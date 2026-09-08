@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Disclaimer · Around The Oven</title>
+  <!-- Google Fonts: Editorial serif + clean sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:opsz,wght@14..32,400;14..32,450;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --brand-cream: #fcf7f0;
+      --brand-warm: #f2e5d4;
+      --brand-terracotta: #b85c3a;
+      --brand-olive: #4f5e45;
+      --brand-dark: #241f1b;
+      --brand-text: #2c241e;
+      --brand-muted: #6d5f54;
+      --border-light: #e2d4c4;
+      --card-bg: #ffffff;
+      --shadow-sm: 0 4px 12px rgba(0,0,0,0.03), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-hover: 0 12px 28px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.02);
+      --radius-card: 28px 8px 28px 8px;
+      --radius-small: 12px 4px 12px 4px;
+      --transition: 0.25s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    body {
+      background-color: var(--brand-cream);
+      color: var(--brand-text);
+      font-family: 'Inter', -apple-system, sans-serif;
+      line-height: 1.6;
+      padding: 0 1.5rem;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1.5rem 0 3rem;
+    }
+
+    /* ——— TYPOGRAPHY ——— */
+    h1, h2, h3, h4, .serif {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+
+    .display-heading {
+      font-size: clamp(2.8rem, 6vw, 4.8rem);
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      letter-spacing: -0.02em;
+      border-bottom: 2px solid var(--brand-terracotta);
+      padding-bottom: 0.35rem;
+      display: inline-block;
+    }
+
+    .meta {
+      font-size: 0.85rem;
+      color: var(--brand-muted);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.2rem;
+    }
+
+    .meta a {
+      color: var(--brand-terracotta);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .meta a:hover {
+      text-decoration: underline;
+    }
+
+    /* ——— NAVIGATION ——— */
+    .nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 0.75rem 0 1.5rem;
+      border-bottom: 2px solid var(--border-light);
+      margin-bottom: 2.5rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: baseline;
+      gap: 0.3rem;
+      text-decoration: none;
+      color: var(--brand-dark);
+    }
+
+    .logo-icon {
+      font-size: 1.8rem;
+      line-height: 1;
+      transform: rotate(-4deg);
+      display: inline-block;
+    }
+
+    .logo-text {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.7rem;
+      letter-spacing: -0.02em;
+    }
+
+    .logo-tagline {
+      font-size: 0.7rem;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--brand-muted);
+      margin-left: 0.5rem;
+      background: var(--brand-warm);
+      padding: 0.1rem 0.7rem;
+      border-radius: 40px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      font-weight: 450;
+      font-size: 0.95rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--brand-dark);
+      border-bottom: 2px solid transparent;
+      transition: var(--transition);
+      padding: 0.2rem 0;
+    }
+
+    .nav-links a:hover {
+      border-bottom-color: var(--brand-terracotta);
+      color: var(--brand-terracotta);
+    }
+
+    .nav-links li {
+      list-style: none;
+    }
+
+    /* ——— DISCLAIMER PAGE ——— */
+    .disclaimer-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-card);
+      padding: 3rem 3.2rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+      margin: 2.5rem 0 3rem;
+    }
+
+    .disclaimer-card h2 {
+      font-size: 2.4rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .disclaimer-card .last-updated {
+      font-size: 0.85rem;
+      color: var(--brand-muted);
+      margin-bottom: 2rem;
+      display: inline-block;
+      background: var(--brand-warm);
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+    }
+
+    .disclaimer-card p {
+      margin-bottom: 1.2rem;
+      color: var(--brand-text);
+      max-width: 780px;
+    }
+
+    .disclaimer-card strong {
+      color: var(--brand-terracotta);
+      font-weight: 600;
+    }
+
+    .disclaimer-card hr {
+      border: none;
+      border-top: 2px solid var(--border-light);
+      margin: 2rem 0;
+    }
+
+    .disclaimer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+
+    .disclaimer-grid .block {
+      background: var(--brand-cream);
+      padding: 1.5rem 2rem;
+      border-radius: var(--radius-small);
+      border-left: 4px solid var(--brand-terracotta);
+    }
+
+    .disclaimer-grid .block h4 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.3rem;
+      color: var(--brand-dark);
+    }
+
+    .disclaimer-grid .block p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: var(--brand-muted);
+    }
+
+    /* ——— FOOTER ——— */
+    .footer {
+      margin-top: 5rem;
+      border-top: 2px solid var(--border-light);
+      padding: 2.5rem 0 1.5rem;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .footer .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .footer .brand .logo-text {
+      font-size: 1.6rem;
+    }
+
+    .footer p {
+      color: var(--brand-muted);
+      font-size: 0.9rem;
+      max-width: 280px;
+    }
+
+    .footer h4 {
+      font-family: 'Inter', sans-serif;
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      color: var(--brand-muted);
+      margin-bottom: 0.8rem;
+    }
+
+    .footer ul {
+      list-style: none;
+    }
+
+    .footer ul li {
+      margin-bottom: 0.4rem;
+    }
+
+    .footer a {
+      text-decoration: none;
+      color: var(--brand-dark);
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+
+    .footer a:hover {
+      color: var(--brand-terracotta);
+    }
+
+    .footer-legal {
+      grid-column: 1 / -1;
+      border-top: 1px solid var(--border-light);
+      padding-top: 1.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--brand-muted);
+    }
+
+    .footer-legal a {
+      color: var(--brand-muted);
+      margin-left: 1.5rem;
+    }
+
+    /* ——— RESPONSIVE ——— */
+    @media (max-width: 880px) {
+      .disclaimer-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 0 0.8rem; }
+      .nav-bar { flex-direction: column; align-items: stretch; gap: 0.8rem; }
+      .nav-links { justify-content: space-between; gap: 0.5rem; }
+      .disclaimer-card { padding: 1.8rem; }
+      .footer { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- NAV -->
+  <nav class="nav-bar">
+    <a href="#" class="logo">
+      <span class="logo-icon">◈</span>
+      <span class="logo-text">Around The Oven</span>
+      <span class="logo-tagline">journal</span>
+    </a>
+    <div class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="terms.html">Terms Of Privacy</a></li>
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="cookies.html">Cookies Policy</a></li> 
+      <li><a href="disclaimer.html" style="border-bottom-color: var(--brand-terracotta); color: var(--brand-terracotta);">Disclaimer</a></li>
+      <li><a href="categories.html">Categories</a></li>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div style="margin-bottom: 1.5rem;">
+    <h1 class="display-heading" style="font-size: clamp(2.8rem, 5vw, 4.2rem);">Disclaimer</h1>
+    <p style="font-size: 1.2rem; color: var(--brand-muted); max-width: 680px; margin-top: 0.3rem;">Transparency and honesty are at the heart of our kitchen. Please read this disclaimer carefully.</p>
+  </div>
+
+  <!-- DISCLAIMER CONTENT -->
+  <div class="disclaimer-card">
+    <h2>General information</h2>
+    <span class="last-updated">Last updated: March 2026</span>
+    <p><strong>Around The Oven</strong> is a recipe journal and lifestyle blog. All content is provided for informational and entertainment purposes only. While we strive to ensure the accuracy of the information published, we make no guarantees regarding completeness, reliability, or suitability.</p>
+    <p>Recipes, techniques, and nutritional information are shared in good faith. Always use your own judgment when cooking, especially if you have allergies, dietary restrictions, or health conditions. We recommend consulting a qualified professional for specific dietary or health advice.</p>
+
+    <hr>
+
+    <div class="disclaimer-grid">
+      <div class="block">
+        <h4>📖 Editorial independence</h4>
+        <p>All opinions expressed on Around The Oven are our own. Sponsored content, affiliate links, or gifted products will always be clearly disclosed. We never compromise our integrity for compensation.</p>
+      </div>
+      <div class="block">
+        <h4>🧑‍🍳 Recipe accuracy</h4>
+        <p>We test our recipes multiple times, but variations in ingredients, oven temperatures, and equipment may affect results. We encourage you to adjust and experiment — that’s how great cooks are made!</p>
+      </div>
+      <div class="block">
+        <h4>🔗 External links</h4>
+        <p>Some links on this site lead to third-party websites. We are not responsible for the content, privacy practices, or accuracy of these external sites. Use them at your own discretion.</p>
+      </div>
+      <div class="block">
+        <h4>⚖️ Affiliate disclosure</h4>
+        <p>Around The Oven participates in select affiliate programs. If you make a purchase through an affiliate link, we may earn a small commission at no extra cost to you. We only recommend products we truly use and love.</p>
+      </div>
+    </div>
+
+    <hr>
+
+    <p style="font-size: 0.95rem; margin-top: 0.5rem;"><strong>⚠️ Important:</strong> This disclaimer is subject to change without prior notice. It is your responsibility to review this page periodically. If you have any questions, feel free to <a href="contact.html" style="color: var(--brand-terracotta); text-decoration: none; font-weight: 600;">reach out to us</a>.</p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="brand">
+      <span class="logo-text" style="font-size:1.8rem;">◈ Around The Oven</span>
+      <p style="margin-top:0.2rem;">A recipe journal for curious cooks. We explore technique, tradition, and the beauty of simple ingredients.</p>
+      <div style="display:flex; gap:0.8rem; margin-top:0.4rem;">
+        <span>📷</span><span>✉️</span><span>📌</span>
+      </div>
+    </div>
+    <div>
+      <h4>explore</h4>
+      <ul>
+        <li><a href="#">archive</a></li>
+        <li><a href="#">categories</a></li>
+        <li><a href="#">resources</a></li>
+        <li><a href="#">faq</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>about</h4>
+      <ul>
+        <li><a href="#">editorial policy</a></li>
+        <li><a href="#">authors</a></li>
+        <li><a href="#">contact</a></li>
+        <li><a href="#">sitemap</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>legal</h4>
+      <ul>
+        <li><a href="#">privacy</a></li>
+        <li><a href="#">terms</a></li>
+        <li><a href="#">cookie policy</a></li>
+        <li><a href="#">disclaimer</a></li>
+      </ul>
+    </div>
+    <div class="footer-legal">
+      <span>© 2026 Around The Oven. All rights reserved.</span>
+      <span>
+        <a href="#">privacy</a> <a href="#">terms</a> <a href="#">cookies</a>
+      </span>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

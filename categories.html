@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Categories · Around The Oven</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:opsz,wght@14..32,400;14..32,450;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+  <style>
+    /* ——— reuse root variables & base styles ——— */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --brand-cream: #fcf7f0;
+      --brand-warm: #f2e5d4;
+      --brand-terracotta: #b85c3a;
+      --brand-olive: #4f5e45;
+      --brand-dark: #241f1b;
+      --brand-text: #2c241e;
+      --brand-muted: #6d5f54;
+      --border-light: #e2d4c4;
+      --card-bg: #ffffff;
+      --shadow-sm: 0 4px 12px rgba(0,0,0,0.03), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-hover: 0 12px 28px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.02);
+      --radius-card: 28px 8px 28px 8px;
+      --radius-small: 12px 4px 12px 4px;
+      --transition: 0.25s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    body {
+      background-color: var(--brand-cream);
+      color: var(--brand-text);
+      font-family: 'Inter', -apple-system, sans-serif;
+      line-height: 1.6;
+      padding: 0 1.5rem;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1.5rem 0 3rem;
+    }
+
+    /* ——— TYPOGRAPHY ——— */
+    h1, h2, h3, h4, .serif {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+
+    .display-heading {
+      font-size: clamp(2.8rem, 6vw, 4.8rem);
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      letter-spacing: -0.02em;
+      border-bottom: 2px solid var(--brand-terracotta);
+      padding-bottom: 0.35rem;
+      display: inline-block;
+    }
+
+    .meta {
+      font-size: 0.85rem;
+      color: var(--brand-muted);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.2rem;
+    }
+
+    .meta a {
+      color: var(--brand-terracotta);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .meta a:hover {
+      text-decoration: underline;
+    }
+
+    /* ——— NAVIGATION ——— */
+    .nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 0.75rem 0 1.5rem;
+      border-bottom: 2px solid var(--border-light);
+      margin-bottom: 2.5rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: baseline;
+      gap: 0.3rem;
+      text-decoration: none;
+      color: var(--brand-dark);
+    }
+
+    .logo-icon {
+      font-size: 1.8rem;
+      line-height: 1;
+      transform: rotate(-4deg);
+      display: inline-block;
+    }
+
+    .logo-text {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.7rem;
+      letter-spacing: -0.02em;
+    }
+
+    .logo-tagline {
+      font-size: 0.7rem;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--brand-muted);
+      margin-left: 0.5rem;
+      background: var(--brand-warm);
+      padding: 0.1rem 0.7rem;
+      border-radius: 40px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      font-weight: 450;
+      font-size: 0.95rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--brand-dark);
+      border-bottom: 2px solid transparent;
+      transition: var(--transition);
+      padding: 0.2rem 0;
+    }
+
+    .nav-links a:hover {
+      border-bottom-color: var(--brand-terracotta);
+      color: var(--brand-terracotta);
+    }
+
+    /* ——— CATEGORIES PAGE SPECIFIC ——— */
+    .categories-hero {
+      margin-bottom: 2.5rem;
+    }
+
+    .categories-hero h1 {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      margin-bottom: 0.25rem;
+    }
+
+    .categories-hero p {
+      font-size: 1.2rem;
+      color: var(--brand-muted);
+      max-width: 640px;
+      margin-top: 0.5rem;
+    }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 2rem;
+      margin: 2.5rem 0 3rem;
+    }
+
+    .category-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-card);
+      padding: 1.8rem 1.5rem 1.8rem 1.8rem;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      border: 1px solid transparent;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .category-card:hover {
+      box-shadow: var(--shadow-hover);
+      border-color: var(--border-light);
+      transform: translateY(-3px);
+    }
+
+    .category-icon {
+      font-size: 2.8rem;
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .category-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.7rem;
+      font-weight: 400;
+      margin-bottom: 0.25rem;
+      color: var(--brand-dark);
+    }
+
+    .category-card p {
+      font-size: 0.95rem;
+      color: var(--brand-muted);
+      margin-bottom: 1rem;
+      flex: 1;
+    }
+
+    .category-tag {
+      display: inline-block;
+      background: var(--brand-warm);
+      border-radius: 40px;
+      padding: 0.15rem 1rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--brand-dark);
+      align-self: flex-start;
+      margin-top: 0.2rem;
+    }
+
+    .category-count {
+      font-size: 0.8rem;
+      color: var(--brand-muted);
+      background: var(--brand-cream);
+      border-radius: 40px;
+      padding: 0.1rem 0.8rem;
+      margin-left: 0.6rem;
+    }
+
+    .featured-category {
+      background: var(--brand-warm);
+      border-left: 6px solid var(--brand-terracotta);
+    }
+
+    .featured-category .category-tag {
+      background: var(--brand-terracotta);
+      color: white;
+    }
+
+    /* ——— EXTRA: inline link ——— */
+    .text-link {
+      color: var(--brand-terracotta);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .text-link:hover {
+      text-decoration: underline;
+    }
+
+    /* ——— FOOTER (same) ——— */
+    .footer {
+      margin-top: 5rem;
+      border-top: 2px solid var(--border-light);
+      padding: 2.5rem 0 1.5rem;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .footer .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .footer .brand .logo-text {
+      font-size: 1.6rem;
+    }
+
+    .footer p {
+      color: var(--brand-muted);
+      font-size: 0.9rem;
+      max-width: 280px;
+    }
+
+    .footer h4 {
+      font-family: 'Inter', sans-serif;
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      color: var(--brand-muted);
+      margin-bottom: 0.8rem;
+    }
+
+    .footer ul {
+      list-style: none;
+    }
+
+    .footer ul li {
+      margin-bottom: 0.4rem;
+    }
+
+    .footer a {
+      text-decoration: none;
+      color: var(--brand-dark);
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+
+    .footer a:hover {
+      color: var(--brand-terracotta);
+    }
+
+    .footer-legal {
+      grid-column: 1 / -1;
+      border-top: 1px solid var(--border-light);
+      padding-top: 1.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--brand-muted);
+    }
+
+    .footer-legal a {
+      color: var(--brand-muted);
+      margin-left: 1.5rem;
+    }
+
+    /* ——— RESPONSIVE ——— */
+    @media (max-width: 880px) {
+      .footer { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 0 0.8rem; }
+      .nav-bar { flex-direction: column; align-items: stretch; gap: 0.8rem; }
+      .nav-links { justify-content: space-between; gap: 0.5rem; }
+      .footer { grid-template-columns: 1fr; }
+      .categories-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- NAV (same as index) -->
+  <nav class="nav-bar">
+    <a href="index.html" class="logo">
+      <span class="logo-icon">◈</span>
+      <span class="logo-text">Around The Oven</span>
+      <span class="logo-tagline">journal</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="terms.html">Terms Of Privacy</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="cookies.html">Cookies Policy</a>
+      <a href="disclaimer.html">Disclaimer</a>
+      <a href="categories.html" style="border-bottom-color: var(--brand-terracotta); color: var(--brand-terracotta);">Categories</a>
+    </div>
+  </nav>
+
+  <!-- CATEGORIES HERO -->
+  <div class="categories-hero">
+    <h1>Explore <span style="color: var(--brand-terracotta);">Categories</span></h1>
+    <p>Every recipe has a home. Browse by course, method, or mood — and find your next kitchen adventure.</p>
+  </div>
+
+  <!-- CATEGORIES GRID -->
+  <div class="categories-grid">
+    
+    <!-- Card 1: featured -->
+    <div class="category-card featured-category">
+      <div class="category-icon">🍞</div>
+      <h3>Bread &amp; Baking</h3>
+      <p>From sourdough to focaccia, all things flour, water, and time. Includes rustic loaves, flatbreads, and pastry.</p>
+      <span class="category-tag">Featured &nbsp;·&nbsp; 24 recipes</span>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="category-card">
+      <div class="category-icon">🍝</div>
+      <h3>Pasta &amp; Grains</h3>
+      <p>Fresh pasta, dried pasta, risotto, polenta — and the sauces that bring them to life. Italian classics and modern twists.</p>
+      <span class="category-tag">18 recipes</span>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="category-card">
+      <div class="category-icon">🥘</div>
+      <h3>Stews &amp; Braises</h3>
+      <p>Low and slow cooking. Comforting ragù, bean stews, and hearty one‑pot meals that fill the kitchen with warmth.</p>
+      <span class="category-tag">12 recipes</span>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="category-card">
+      <div class="category-icon">🥗</div>
+      <h3>Salads &amp; Sides</h3>
+      <p>Fresh, vibrant, and seasonal. Vegetables, grains, and dressings that turn simple ingredients into memorable sides.</p>
+      <span class="category-tag">15 recipes</span>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="category-card">
+      <div class="category-icon">🐟</div>
+      <h3>Fish &amp; Seafood</h3>
+      <p>From the Mediterranean and beyond — grilled fish, shellfish pasta, and simple pan‑seared fillets.</p>
+      <span class="category-tag">9 recipes</span>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="category-card">
+      <div class="category-icon">🍰</div>
+      <h3>Desserts &amp; Sweets</h3>
+      <p>Dolci, tarts, cookies, and custards. Recipes that satisfy a sweet tooth with elegance and a touch of nostalgia.</p>
+      <span class="category-tag">22 recipes</span>
+    </div>
+
+    <!-- Card 7 -->
+    <div class="category-card">
+      <div class="category-icon">🍳</div>
+      <h3>Breakfast &amp; Brunch</h3>
+      <p>Eggs, pancakes, frittatas, and morning breads. Start your day with something delicious and unfussy.</p>
+      <span class="category-tag">11 recipes</span>
+    </div>
+
+    <!-- Card 8 -->
+    <div class="category-card">
+      <div class="category-icon">🧀</div>
+      <h3>Cheese &amp; Charcuterie</h3>
+      <p>Pairings, cheese boards, and simple appetizers. A guide to crafting the perfect grazing table.</p>
+      <span class="category-tag">8 recipes</span>
+    </div>
+
+    <!-- Card 9 -->
+    <div class="category-card">
+      <div class="category-icon">🌿</div>
+      <h3>Herbs &amp; Preserves</h3>
+      <p>Pickles, herb oils, and fruit preserves — little jars of flavor that elevate any dish.</p>
+      <span class="category-tag">7 recipes</span>
+    </div>
+
+    <!-- Card 10 -->
+    <div class="category-card">
+      <div class="category-icon">🍷</div>
+      <h3>Wine &amp; Aperitivo</h3>
+      <p>Spritzes, wine pairings, and small bites for leisurely afternoons. The art of Italian happy hour.</p>
+      <span class="category-tag">6 recipes</span>
+    </div>
+  </div>
+
+  <!-- optional extra note (like terms card but simpler) -->
+  <div style="background: var(--card-bg); border-radius: var(--radius-small); padding: 1.8rem 2rem; box-shadow: var(--shadow-sm); margin-top: 1rem;">
+    <p style="font-size: 1rem; color: var(--brand-muted);">
+      <span style="font-weight: 600;">Not sure where to start?</span> 
+      Browse our <a href="#" class="text-link">most popular recipes</a> or explore the 
+      <a href="#" class="text-link">Featured</a> category for editor’s picks.
+    </p>
+  </div>
+
+  <!-- FOOTER (same as index) -->
+  <footer class="footer">
+    <div class="brand">
+      <span class="logo-text" style="font-size:1.8rem;">◈ Around The Oven</span>
+      <p style="margin-top:0.2rem;">A recipe journal for curious cooks. We explore technique, tradition, and the beauty of simple ingredients.</p>
+      <div style="display:flex; gap:0.8rem; margin-top:0.4rem;">
+        <span>📷</span><span>✉️</span><span>📌</span>
+      </div>
+    </div>
+    <div>
+      <h4>explore</h4>
+      <ul>
+        <li><a href="#">archive</a></li>
+        <li><a href="categories.html">categories</a></li>
+        <li><a href="#">resources</a></li>
+        <li><a href="#">faq</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>about</h4>
+      <ul>
+        <li><a href="about.html">editorial policy</a></li>
+        <li><a href="#">authors</a></li>
+        <li><a href="contact.html">contact</a></li>
+        <li><a href="#">sitemap</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>legal</h4>
+      <ul>
+        <li><a href="privacy.html">privacy</a></li>
+        <li><a href="terms.html">terms</a></li>
+        <li><a href="cookies.html">cookie policy</a></li>
+        <li><a href="disclaimer.html">disclaimer</a></li>
+      </ul>
+    </div>
+    <div class="footer-legal">
+      <span>© 2026 Around The Oven. All rights reserved.</span>
+      <span>
+        <a href="privacy.html">privacy</a> <a href="terms.html">terms</a> <a href="cookies.html">cookies</a>
+      </span>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact · Around The Oven</title>
+  <!-- Google Fonts: Editorial serif + clean sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:opsz,wght@14..32,400;14..32,450;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --brand-cream: #fcf7f0;
+      --brand-warm: #f2e5d4;
+      --brand-terracotta: #b85c3a;
+      --brand-olive: #4f5e45;
+      --brand-dark: #241f1b;
+      --brand-text: #2c241e;
+      --brand-muted: #6d5f54;
+      --border-light: #e2d4c4;
+      --card-bg: #ffffff;
+      --shadow-sm: 0 4px 12px rgba(0,0,0,0.03), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-hover: 0 12px 28px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.02);
+      --radius-card: 28px 8px 28px 8px;
+      --radius-small: 12px 4px 12px 4px;
+      --transition: 0.25s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    body {
+      background-color: var(--brand-cream);
+      color: var(--brand-text);
+      font-family: 'Inter', -apple-system, sans-serif;
+      line-height: 1.6;
+      padding: 0 1.5rem;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1.5rem 0 3rem;
+    }
+
+    /* ——— TYPOGRAPHY ——— */
+    h1, h2, h3, h4, .serif {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+
+    .display-heading {
+      font-size: clamp(2.8rem, 6vw, 4.8rem);
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      letter-spacing: -0.02em;
+      border-bottom: 2px solid var(--brand-terracotta);
+      padding-bottom: 0.35rem;
+      display: inline-block;
+    }
+
+    .meta {
+      font-size: 0.85rem;
+      color: var(--brand-muted);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.2rem;
+    }
+
+    .meta a {
+      color: var(--brand-terracotta);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .meta a:hover {
+      text-decoration: underline;
+    }
+
+    /* ——— NAVIGATION ——— */
+    .nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 0.75rem 0 1.5rem;
+      border-bottom: 2px solid var(--border-light);
+      margin-bottom: 2.5rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: baseline;
+      gap: 0.3rem;
+      text-decoration: none;
+      color: var(--brand-dark);
+    }
+
+    .logo-icon {
+      font-size: 1.8rem;
+      line-height: 1;
+      transform: rotate(-4deg);
+      display: inline-block;
+    }
+
+    .logo-text {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.7rem;
+      letter-spacing: -0.02em;
+    }
+
+    .logo-tagline {
+      font-size: 0.7rem;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--brand-muted);
+      margin-left: 0.5rem;
+      background: var(--brand-warm);
+      padding: 0.1rem 0.7rem;
+      border-radius: 40px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      font-weight: 450;
+      font-size: 0.95rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--brand-dark);
+      border-bottom: 2px solid transparent;
+      transition: var(--transition);
+      padding: 0.2rem 0;
+    }
+
+    .nav-links a:hover {
+      border-bottom-color: var(--brand-terracotta);
+      color: var(--brand-terracotta);
+    }
+
+    .nav-links li {
+      list-style: none;
+    }
+
+    /* ——— CONTACT PAGE ——— */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin: 2.5rem 0 4rem;
+    }
+
+    .contact-info {
+      background: var(--card-bg);
+      border-radius: var(--radius-card);
+      padding: 2.8rem 2.8rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+    }
+
+    .contact-info h2 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-info p {
+      color: var(--brand-muted);
+      margin-bottom: 2rem;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .contact-detail .icon {
+      font-size: 1.4rem;
+      width: 2.4rem;
+      height: 2.4rem;
+      background: var(--brand-warm);
+      border-radius: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-detail h4 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.1rem;
+    }
+
+    .contact-detail p {
+      margin: 0;
+      color: var(--brand-muted);
+      font-size: 0.95rem;
+    }
+
+    .contact-detail a {
+      color: var(--brand-terracotta);
+      text-decoration: none;
+    }
+
+    .contact-detail a:hover {
+      text-decoration: underline;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.8rem;
+      height: 2.8rem;
+      border-radius: 60px;
+      background: var(--brand-warm);
+      color: var(--brand-dark);
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      background: var(--brand-terracotta);
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    /* ——— CONTACT FORM ——— */
+    .contact-form-wrap {
+      background: var(--card-bg);
+      border-radius: var(--radius-card);
+      padding: 2.8rem 2.8rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+    }
+
+    .contact-form-wrap h2 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-form-wrap p {
+      color: var(--brand-muted);
+      margin-bottom: 1.8rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--brand-muted);
+      margin-bottom: 0.3rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.8rem 1.2rem;
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      background: var(--brand-cream);
+      transition: var(--transition);
+      color: var(--brand-text);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--brand-terracotta);
+      box-shadow: 0 0 0 3px rgba(184, 92, 58, 0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 130px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .btn-primary {
+      background: var(--brand-terracotta);
+      color: white;
+      border: none;
+      padding: 0.8rem 2.8rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.02em;
+    }
+
+    .btn-primary:hover {
+      background: var(--brand-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .form-note {
+      font-size: 0.85rem;
+      color: var(--brand-muted);
+      margin-top: 0.8rem;
+    }
+
+    .form-note a {
+      color: var(--brand-terracotta);
+    }
+
+    /* ——— FAQ SECTION ——— */
+    .faq-section {
+      margin: 4rem 0 3rem;
+      background: var(--card-bg);
+      border-radius: var(--radius-card);
+      padding: 2.8rem 3rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+    }
+
+    .faq-section h2 {
+      font-size: 2rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .faq-section > p {
+      color: var(--brand-muted);
+      margin-bottom: 2rem;
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem 2.5rem;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 1.2rem;
+    }
+
+    .faq-item h4 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+      color: var(--brand-dark);
+    }
+
+    .faq-item p {
+      font-size: 0.95rem;
+      color: var(--brand-muted);
+      margin: 0;
+    }
+
+    /* ——— FOOTER ——— */
+    .footer {
+      margin-top: 5rem;
+      border-top: 2px solid var(--border-light);
+      padding: 2.5rem 0 1.5rem;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .footer .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .footer .brand .logo-text {
+      font-size: 1.6rem;
+    }
+
+    .footer p {
+      color: var(--brand-muted);
+      font-size: 0.9rem;
+      max-width: 280px;
+    }
+
+    .footer h4 {
+      font-family: 'Inter', sans-serif;
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      color: var(--brand-muted);
+      margin-bottom: 0.8rem;
+    }
+
+    .footer ul {
+      list-style: none;
+    }
+
+    .footer ul li {
+      margin-bottom: 0.4rem;
+    }
+
+    .footer a {
+      text-decoration: none;
+      color: var(--brand-dark);
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+
+    .footer a:hover {
+      color: var(--brand-terracotta);
+    }
+
+    .footer-legal {
+      grid-column: 1 / -1;
+      border-top: 1px solid var(--border-light);
+      padding-top: 1.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--brand-muted);
+    }
+
+    .footer-legal a {
+      color: var(--brand-muted);
+      margin-left: 1.5rem;
+    }
+
+    /* ——— RESPONSIVE ——— */
+    @media (max-width: 880px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 0 0.8rem; }
+      .nav-bar { flex-direction: column; align-items: stretch; gap: 0.8rem; }
+      .nav-links { justify-content: space-between; gap: 0.5rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .contact-info { padding: 1.8rem; }
+      .contact-form-wrap { padding: 1.8rem; }
+      .faq-section { padding: 1.8rem; }
+      .footer { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- NAV -->
+  <nav class="nav-bar">
+    <a href="#" class="logo">
+      <span class="logo-icon">◈</span>
+      <span class="logo-text">Around The Oven</span>
+      <span class="logo-tagline">journal</span>
+    </a>
+    <div class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html" style="border-bottom-color: var(--brand-terracotta); color: var(--brand-terracotta);">Contact</a></li>
+      <li><a href="terms.html">Terms Of Privacy</a></li>
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="cookies.html">Cookies Policy</a></li> 
+      <li><a href="disclaimer.html">Disclaimer</a></li>
+      <li><a href="categories.html">Categories</a></li>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div style="margin-bottom: 1.5rem;">
+    <h1 class="display-heading" style="font-size: clamp(2.8rem, 5vw, 4.2rem);">Get in touch</h1>
+    <p style="font-size: 1.2rem; color: var(--brand-muted); max-width: 600px; margin-top: 0.3rem;">Have a question, a recipe to share, or just want to say hello? We’d love to hear from you.</p>
+  </div>
+
+  <!-- CONTACT GRID -->
+  <div class="contact-grid">
+    <!-- LEFT: Contact Info -->
+    <div class="contact-info">
+      <h2>Say hello</h2>
+      <p>We try to respond to every message within 48 hours. For media or partnership inquiries, please use the form or reach out directly.</p>
+
+      <div class="contact-detail">
+        <div class="icon">✉️</div>
+        <div>
+          <h4>Email</h4>
+          <p><a href="mailto:hello@aroundtheoven.com">hello@aroundtheoven.com</a></p>
+        </div>
+      </div>
+
+      <div class="contact-detail">
+        <div class="icon">📍</div>
+        <div>
+          <h4>Studio</h4>
+          <p>Via del Forno 12, 70122<br>Bari, Puglia, Italy</p>
+        </div>
+      </div>
+
+      <div class="contact-detail">
+        <div class="icon">📞</div>
+        <div>
+          <h4>Phone</h4>
+          <p><a href="tel:+390805551234">+39 080 555 1234</a></p>
+        </div>
+      </div>
+
+      <div class="social-links">
+        <a href="#" aria-label="Instagram">📷</a>
+        <a href="#" aria-label="Pinterest">📌</a>
+        <a href="#" aria-label="YouTube">▶️</a>
+        <a href="#" aria-label="Newsletter">✉️</a>
+      </div>
+    </div>
+
+    <!-- RIGHT: Contact Form -->
+    <div class="contact-form-wrap">
+      <h2>Send us a message</h2>
+      <p>We’ll get back to you as soon as possible.</p>
+
+      <form id="contactForm" onsubmit="event.preventDefault(); alert('Thanks for your message! We\'ll get back to you soon.');">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Your name</label>
+            <input type="text" id="name" name="name" placeholder="e.g. Margherita" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <select id="subject" name="subject">
+            <option value="">Select a topic…</option>
+            <option value="recipe">Recipe suggestion</option>
+            <option value="question">Baking question</option>
+            <option value="collaboration">Collaboration / press</option>
+            <option value="feedback">Feedback</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Your message</label>
+          <textarea id="message" name="message" placeholder="Tell us what’s on your mind…" required></textarea>
+        </div>
+
+        <button type="submit" class="btn-primary">Send message →</button>
+        <p class="form-note">We’ll never share your data. See our <a href="#">Privacy Policy</a>.</p>
+      </form>
+    </div>
+  </div>
+
+  <!-- FAQ SECTION -->
+  <div class="faq-section">
+    <h2>Frequently asked</h2>
+    <p>Quick answers to the most common questions we receive.</p>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <h4>Do you accept guest recipes?</h4>
+        <p>Absolutely! We love hearing from the community. Send us your recipe and story through the form — we’ll be in touch.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Can I republish your content?</h4>
+        <p>We appreciate your interest! Please reach out for permission — we usually say yes with proper attribution and a link back.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Do you offer baking classes?</h4>
+        <p>Not yet, but we’re planning a series of small online workshops for 2027. Sign up for our newsletter to be the first to know.</p>
+      </div>
+      <div class="faq-item">
+        <h4>How can I support your work?</h4>
+        <p>Sharing our posts, leaving a comment, or buying us a coffee via the link in our bio helps us keep the oven burning!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="brand">
+      <span class="logo-text" style="font-size:1.8rem;">◈ Around The Oven</span>
+      <p style="margin-top:0.2rem;">A recipe journal for curious cooks. We explore technique, tradition, and the beauty of simple ingredients.</p>
+      <div style="display:flex; gap:0.8rem; margin-top:0.4rem;">
+        <span>📷</span><span>✉️</span><span>📌</span>
+      </div>
+    </div>
+    <div>
+      <h4>explore</h4>
+      <ul>
+        <li><a href="#">archive</a></li>
+        <li><a href="#">categories</a></li>
+        <li><a href="#">resources</a></li>
+        <li><a href="#">faq</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>about</h4>
+      <ul>
+        <li><a href="#">editorial policy</a></li>
+        <li><a href="#">authors</a></li>
+        <li><a href="#">contact</a></li>
+        <li><a href="#">sitemap</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>legal</h4>
+      <ul>
+        <li><a href="#">privacy</a></li>
+        <li><a href="#">terms</a></li>
+        <li><a href="#">cookie policy</a></li>
+        <li><a href="#">disclaimer</a></li>
+      </ul>
+    </div>
+    <div class="footer-legal">
+      <span>© 2026 Around The Oven. All rights reserved.</span>
+      <span>
+        <a href="#">privacy</a> <a href="#">terms</a> <a href="#">cookies</a>
+      </span>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

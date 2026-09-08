@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About · Around The Oven</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:opsz,wght@14..32,400;14..32,450;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+  <style>
+    /* ——— reuse the same root variables and base styles from index ——— */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --brand-cream: #fcf7f0;
+      --brand-warm: #f2e5d4;
+      --brand-terracotta: #b85c3a;
+      --brand-olive: #4f5e45;
+      --brand-dark: #241f1b;
+      --brand-text: #2c241e;
+      --brand-muted: #6d5f54;
+      --border-light: #e2d4c4;
+      --card-bg: #ffffff;
+      --shadow-sm: 0 4px 12px rgba(0,0,0,0.03), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-hover: 0 12px 28px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.02);
+      --radius-card: 28px 8px 28px 8px;
+      --radius-small: 12px 4px 12px 4px;
+      --transition: 0.25s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    body {
+      background-color: var(--brand-cream);
+      color: var(--brand-text);
+      font-family: 'Inter', -apple-system, sans-serif;
+      line-height: 1.6;
+      padding: 0 1.5rem;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1.5rem 0 3rem;
+    }
+
+    /* ——— TYPOGRAPHY ——— */
+    h1, h2, h3, h4, .serif {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+
+    .display-heading {
+      font-size: clamp(2.8rem, 6vw, 4.8rem);
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      letter-spacing: -0.02em;
+      border-bottom: 2px solid var(--brand-terracotta);
+      padding-bottom: 0.35rem;
+      display: inline-block;
+    }
+
+    .meta {
+      font-size: 0.85rem;
+      color: var(--brand-muted);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.2rem;
+    }
+
+    .meta a {
+      color: var(--brand-terracotta);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .meta a:hover {
+      text-decoration: underline;
+    }
+
+    /* ——— NAVIGATION (same as index) ——— */
+    .nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 0.75rem 0 1.5rem;
+      border-bottom: 2px solid var(--border-light);
+      margin-bottom: 2.5rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: baseline;
+      gap: 0.3rem;
+      text-decoration: none;
+      color: var(--brand-dark);
+    }
+
+    .logo-icon {
+      font-size: 1.8rem;
+      line-height: 1;
+      transform: rotate(-4deg);
+      display: inline-block;
+    }
+
+    .logo-text {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.7rem;
+      letter-spacing: -0.02em;
+    }
+
+    .logo-tagline {
+      font-size: 0.7rem;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--brand-muted);
+      margin-left: 0.5rem;
+      background: var(--brand-warm);
+      padding: 0.1rem 0.7rem;
+      border-radius: 40px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      font-weight: 450;
+      font-size: 0.95rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--brand-dark);
+      border-bottom: 2px solid transparent;
+      transition: var(--transition);
+      padding: 0.2rem 0;
+    }
+
+    .nav-links a:hover {
+      border-bottom-color: var(--brand-terracotta);
+      color: var(--brand-terracotta);
+    }
+
+    /* ——— ABOUT PAGE SPECIFIC ——— */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin: 2.5rem 0 4rem;
+      align-items: start;
+    }
+
+    .about-text {
+      background: var(--card-bg);
+      padding: 2.8rem 3rem;
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .about-text h1 {
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .about-text .subtitle {
+      font-size: 1.2rem;
+      color: var(--brand-muted);
+      margin-bottom: 1.8rem;
+    }
+
+    .about-text p {
+      margin-bottom: 1.2rem;
+      color: var(--brand-text);
+    }
+
+    .about-text .signoff {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 2px solid var(--brand-warm);
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      color: var(--brand-terracotta);
+    }
+
+    .about-side {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .about-card {
+      background: var(--card-bg);
+      padding: 2rem 2.2rem;
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-sm);
+      border-left: 6px solid var(--brand-olive);
+    }
+
+    .about-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .about-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .about-card li {
+      padding: 0.4rem 0;
+      border-bottom: 1px solid var(--border-light);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .about-card li:last-child {
+      border-bottom: none;
+    }
+
+    .about-card .label {
+      color: var(--brand-muted);
+      font-size: 0.9rem;
+    }
+
+    .about-card .value {
+      font-weight: 600;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .stat-item {
+      background: var(--brand-cream);
+      padding: 1rem;
+      border-radius: var(--radius-small);
+      text-align: center;
+    }
+
+    .stat-item .number {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.2rem;
+      color: var(--brand-terracotta);
+    }
+
+    .stat-item .desc {
+      font-size: 0.8rem;
+      color: var(--brand-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* ——— TEAM / CONTRIBUTORS ——— */
+    .team-section {
+      margin: 3rem 0 4rem;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .team-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-card);
+      padding: 1.8rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+      transition: var(--transition);
+    }
+
+    .team-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .team-card .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--brand-warm);
+      margin: 0 auto 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      color: var(--brand-terracotta);
+    }
+
+    .team-card h4 {
+      font-size: 1.2rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+    }
+
+    .team-card .role {
+      font-size: 0.85rem;
+      color: var(--brand-terracotta);
+      font-weight: 500;
+    }
+
+    .team-card p {
+      font-size: 0.9rem;
+      color: var(--brand-muted);
+      margin-top: 0.5rem;
+    }
+
+    /* ——— FOOTER (same as index) ——— */
+    .footer {
+      margin-top: 5rem;
+      border-top: 2px solid var(--border-light);
+      padding: 2.5rem 0 1.5rem;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .footer .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .footer .brand .logo-text {
+      font-size: 1.6rem;
+    }
+
+    .footer p {
+      color: var(--brand-muted);
+      font-size: 0.9rem;
+      max-width: 280px;
+    }
+
+    .footer h4 {
+      font-family: 'Inter', sans-serif;
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      color: var(--brand-muted);
+      margin-bottom: 0.8rem;
+    }
+
+    .footer ul {
+      list-style: none;
+    }
+
+    .footer ul li {
+      margin-bottom: 0.4rem;
+    }
+
+    .footer a {
+      text-decoration: none;
+      color: var(--brand-dark);
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+
+    .footer a:hover {
+      color: var(--brand-terracotta);
+    }
+
+    .footer-legal {
+      grid-column: 1 / -1;
+      border-top: 1px solid var(--border-light);
+      padding-top: 1.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--brand-muted);
+    }
+
+    .footer-legal a {
+      color: var(--brand-muted);
+      margin-left: 1.5rem;
+    }
+
+    /* ——— RESPONSIVE ——— */
+    @media (max-width: 880px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+      .team-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .footer {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 0 0.8rem; }
+      .nav-bar { flex-direction: column; align-items: stretch; gap: 0.8rem; }
+      .nav-links { justify-content: space-between; gap: 0.5rem; }
+      .team-grid { grid-template-columns: 1fr; }
+      .footer { grid-template-columns: 1fr; }
+      .about-text { padding: 1.8rem; }
+      .about-stats { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- NAV (same as index) -->
+  <nav class="nav-bar">
+    <a href="index.html" class="logo">
+      <span class="logo-icon">◈</span>
+      <span class="logo-text">Around The Oven</span>
+      <span class="logo-tagline">journal</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html" style="border-bottom-color: var(--brand-terracotta); color: var(--brand-terracotta);">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="terms.html">Terms Of Privacy</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="cookies.html">Cookies Policy</a>
+      <a href="disclaimer.html">Disclaimer</a>
+      <a href="categories.html">Categories</a>
+    </div>
+  </nav>
+
+  <!-- ABOUT HERO -->
+  <div style="margin-bottom: 2rem;">
+    <h1 class="display-heading" style="font-size: clamp(2.4rem, 5vw, 4rem);">About <span style="color: var(--brand-terracotta);">Around The Oven</span></h1>
+    <p style="font-size: 1.2rem; color: var(--brand-muted); max-width: 640px; margin-top: 0.5rem;">
+      A recipe journal for curious cooks. We explore technique, tradition, and the beauty of simple ingredients.
+    </p>
+  </div>
+
+  <!-- ABOUT CONTENT -->
+  <div class="about-grid">
+    <div class="about-text">
+      <h1>Our Story</h1>
+      <div class="subtitle">Born in a tiny kitchen, shared around the world.</div>
+      <p>
+        <strong>Around The Oven</strong> began as a collection of handwritten recipes passed down through generations. 
+        What started as a personal notebook has grown into a community of home cooks, bakers, and food lovers who believe 
+        that the best meals are made with patience, curiosity, and a little bit of joy.
+      </p>
+      <p>
+        We are not about perfection — we are about <strong>process</strong>. Whether you’re kneading dough for the first time 
+        or perfecting your sourdough starter, we’re here to guide you with tested techniques, honest stories, and recipes 
+        that actually work.
+      </p>
+      <p>
+        Our name, <em>Around The Oven</em>, reflects the heart of every kitchen: the warmth, the waiting, and the gathering 
+        of people around something delicious. From wood‑fired breads to slow‑simmered sauces, we celebrate the rituals 
+        that turn ingredients into memories.
+      </p>
+      <div class="signoff">— Eat well, cook slowly.</div>
+    </div>
+
+    <div class="about-side">
+      <!-- quick facts -->
+      <div class="about-card">
+        <h3>📋 Quick Facts</h3>
+        <ul>
+          <li><span class="label">Founded</span><span class="value">2024</span></li>
+          <li><span class="label">Based in</span><span class="value">Rome, Italy</span></li>
+          <li><span class="label">Focus</span><span class="value">Bread · Pasta · Seasonal</span></li>
+          <li><span class="label">Philosophy</span><span class="value">Slow & intentional</span></li>
+        </ul>
+      </div>
+
+      <!-- stats -->
+      <div class="about-card" style="border-left-color: var(--brand-terracotta);">
+        <h3>📊 By the Numbers</h3>
+        <div class="about-stats">
+          <div class="stat-item">
+            <div class="number">127</div>
+            <div class="desc">recipes published</div>
+          </div>
+          <div class="stat-item">
+            <div class="number">48k</div>
+            <div class="desc">monthly readers</div>
+          </div>
+          <div class="stat-item">
+            <div class="number">32</div>
+            <div class="desc">contributors</div>
+          </div>
+          <div class="stat-item">
+            <div class="number">6</div>
+            <div class="desc">countries</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEAM / CONTRIBUTORS -->
+  <div class="team-section">
+    <h2 class="section-title">Meet the Team</h2>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="avatar">🍕</div>
+        <h4>Elena Rossini</h4>
+        <div class="role">Editor &amp; Baker</div>
+        <p>Bread obsessive. Spends weekends tending to her sourdough starter, named “Leonardo.”</p>
+      </div>
+      <div class="team-card">
+        <div class="avatar">🍝</div>
+        <h4>Marco Bianchi</h4>
+        <div class="role">Recipe Developer</div>
+        <p>Pasta purist. Believes in hand‑rolled shapes and the perfect al dente bite.</p>
+      </div>
+      <div class="team-card">
+        <div class="avatar">🍋</div>
+        <h4>Clara Fontana</h4>
+        <div class="role">Food Writer</div>
+        <p>Storyteller. Finds poetry in seasonal produce and humble ingredients.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT WE BELIEVE (extra editorial block) -->
+  <div style="background: var(--brand-warm); border-radius: var(--radius-card); padding: 2.5rem 3rem; margin: 2rem 0 3rem;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem;">
+      <div>
+        <h3 style="font-size: 1.6rem; color: var(--brand-terracotta);">01</h3>
+        <h4 style="font-family: 'DM Serif Display', serif; font-size: 1.2rem;">Technique matters</h4>
+        <p style="color: var(--brand-muted); font-size: 0.95rem;">We test every recipe multiple times so you can cook with confidence.</p>
+      </div>
+      <div>
+        <h3 style="font-size: 1.6rem; color: var(--brand-terracotta);">02</h3>
+        <h4 style="font-family: 'DM Serif Display', serif; font-size: 1.2rem;">Seasonal &amp; simple</h4>
+        <p style="color: var(--brand-muted); font-size: 0.95rem;">We celebrate ingredients at their peak — no fuss, just flavour.</p>
+      </div>
+      <div>
+        <h3 style="font-size: 1.6rem; color: var(--brand-terracotta);">03</h3>
+        <h4 style="font-family: 'DM Serif Display', serif; font-size: 1.2rem;">Community first</h4>
+        <p style="color: var(--brand-muted); font-size: 0.95rem;">We learn from each other. Your kitchen stories make us better.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER (same as index) -->
+  <footer class="footer">
+    <div class="brand">
+      <span class="logo-text" style="font-size:1.8rem;">◈ Around The Oven</span>
+      <p style="margin-top:0.2rem;">A recipe journal for curious cooks. We explore technique, tradition, and the beauty of simple ingredients.</p>
+      <div style="display:flex; gap:0.8rem; margin-top:0.4rem;">
+        <span>📷</span><span>✉️</span><span>📌</span>
+      </div>
+    </div>
+    <div>
+      <h4>explore</h4>
+      <ul>
+        <li><a href="#">archive</a></li>
+        <li><a href="categories.html">categories</a></li>
+        <li><a href="#">resources</a></li>
+        <li><a href="#">faq</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>about</h4>
+      <ul>
+        <li><a href="about.html">editorial policy</a></li>
+        <li><a href="#">authors</a></li>
+        <li><a href="contact.html">contact</a></li>
+        <li><a href="#">sitemap</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>legal</h4>
+      <ul>
+        <li><a href="privacy.html">privacy</a></li>
+        <li><a href="terms.html">terms</a></li>
+        <li><a href="cookies.html">cookie policy</a></li>
+        <li><a href="disclaimer.html">disclaimer</a></li>
+      </ul>
+    </div>
+    <div class="footer-legal">
+      <span>© 2026 Around The Oven. All rights reserved.</span>
+      <span>
+        <a href="privacy.html">privacy</a> <a href="terms.html">terms</a> <a href="cookies.html">cookies</a>
+      </span>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
